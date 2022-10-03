@@ -20,16 +20,16 @@ describe('Login-successful ', async function () {
      });
 
      it('Create a job', async function () {
-        const randomPassword = faker.name.firstName();
+        const randomName = faker.name.firstName();
         const randomjob = faker.name.jobTitle()
 
          const response = await axios.post('https://reqres.in/api/users',
          {
-            "name": randomPassword,
+            "name": randomName,
             "job": randomjob
          });
         expect(response.status).to.equal(201);
-       expect(response.data.name).equal(randomPassword);
+       expect(response.data.name).equal(randomName);
        expect(response.data.job).equal(randomjob);
         console.log(response);
      });
