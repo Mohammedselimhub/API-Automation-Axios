@@ -4,11 +4,12 @@ const {faker} = require("@faker-js/faker")
 
 describe('Login-successful ', async function () {
     it('RETURNS STATUS CODE 200', async function () {
-       //const randomPassword = faker.name.firstName();
+       const mail = "eve.holt@reqres.in";
+       const password = "cityslicka";
         const response = await axios.post('https://reqres.in/api/login',
         {
-                "email": "eve.holt@reqres.in",
-                "password": "cityslicka"
+                "email": mail,
+                "password": password
         });
        expect(response.status).to.equal(200);
     });
@@ -31,7 +32,7 @@ describe('Login-successful ', async function () {
         expect(response.status).to.equal(201);
        expect(response.data.name).equal(randomName);
        expect(response.data.job).equal(randomjob);
-        console.log(response);
+
      });
 
   });
