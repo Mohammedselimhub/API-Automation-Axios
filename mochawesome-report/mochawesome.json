@@ -1,15 +1,15 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 3,
+    "passes": 2,
     "pending": 0,
-    "failures": 0,
-    "start": "2022-10-03T09:10:34.126Z",
-    "end": "2022-10-03T09:10:36.054Z",
-    "duration": 1928,
-    "testsRegistered": 1,
-    "passPercent": 100,
+    "failures": 1,
+    "start": "2022-10-03T14:22:31.498Z",
+    "end": "2022-10-03T14:22:32.332Z",
+    "duration": 834,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "33e67c16-e6c2-40f7-b900-ab844e1d3ed5",
+      "uuid": "8de2f552-b23b-44ca-88a6-a5bb4b923310",
       "title": "",
       "fullFile": "S:\\API Test\\API Test Automation\\test\\AVL-Login.js",
       "file": "\\test\\AVL-Login.js",
@@ -27,8 +27,8 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "856bfae1-5c2b-4927-a647-0d7c884d25f6",
-          "title": "Random",
+          "uuid": "a4770a39-b18a-4cdc-938e-7e2d7de8dc4e",
+          "title": "Login-successful ",
           "fullFile": "S:\\API Test\\API Test Automation\\test\\AVL-Login.js",
           "file": "\\test\\AVL-Login.js",
           "beforeHooks": [],
@@ -36,34 +36,77 @@
           "tests": [
             {
               "title": "RETURNS STATUS CODE 200",
-              "fullTitle": "Random RETURNS STATUS CODE 200",
+              "fullTitle": "Login-successful  RETURNS STATUS CODE 200",
               "timedOut": false,
-              "duration": 1876,
+              "duration": 421,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "// const randominvalidname = faker.name.firstName();\n const AVL = await axios.post('http://api.stageavl.afaqy.sa/auth/login',\n {\n     \"data\": {\n         \"username\": \"large\",\n         \"password\": \"123456Aa\",\n         \"expire\": 90000,\n         \"projection\": [\n             \"_id\",\n             \"username\",\n             \"email\",\n             \"imgUrl\",\n             \"last_login_date\"\n         ]\n     }\n });\nconsole.log(AVL);\nexpect(AVL.status).to.equal(200);\nexpect(AVL.data.message).to.equal('success');\n//expect(AVL.data.value).to.be.a('string');",
+              "code": "//const randomPassword = faker.name.firstName();\n const response = await axios.post('https://reqres.in/api/login',\n {\n         \"email\": \"eve.holt@reqres.in\",\n         \"password\": \"cityslicka\"\n });\nexpect(response.status).to.equal(200);",
               "err": {},
-              "uuid": "7830dfc7-b423-4740-9fca-5ae462af0302",
-              "parentUUID": "856bfae1-5c2b-4927-a647-0d7c884d25f6",
+              "uuid": "528a6450-9d25-4d0f-97be-80e87f45e141",
+              "parentUUID": "a4770a39-b18a-4cdc-938e-7e2d7de8dc4e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "git list of users",
+              "fullTitle": "Login-successful  git list of users",
+              "timedOut": false,
+              "duration": 143,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.get('https://reqres.in/api/users?page=2');\n        expect(response.status).to.equal(200);\n        expect(response.data.data[1].id).to.equal(8);",
+              "err": {},
+              "uuid": "867de11c-3ce3-476e-b410-2a33af73e858",
+              "parentUUID": "a4770a39-b18a-4cdc-938e-7e2d7de8dc4e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Create a job",
+              "fullTitle": "Login-successful  Create a job",
+              "timedOut": false,
+              "duration": 256,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const randomPassword = faker.name.firstName();\nconst randomjob = faker.name.jobTitle()\n const response = await axios.post('https://reqres.in/api/users',\n {\n    \"name\": randomPassword,\n    \"job\": randomjob\n });\nexpect(response.status).to.equal(201);\n       expect(response.data.name).equal(randomPassword1);\n       expect(response.data.job).equal(randomjob);\nconsole.log(response);",
+              "err": {
+                "message": "ReferenceError: randomPassword1 is not defined",
+                "estack": "ReferenceError: randomPassword1 is not defined\n    at Context.<anonymous> (test\\AVL-Login.js:32:41)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)",
+                "diff": null
+              },
+              "uuid": "95fc5dc8-7a86-49ad-be57-d8e2df01d1dd",
+              "parentUUID": "a4770a39-b18a-4cdc-938e-7e2d7de8dc4e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "7830dfc7-b423-4740-9fca-5ae462af0302"
+            "528a6450-9d25-4d0f-97be-80e87f45e141",
+            "867de11c-3ce3-476e-b410-2a33af73e858"
           ],
-          "failures": [],
+          "failures": [
+            "95fc5dc8-7a86-49ad-be57-d8e2df01d1dd"
+          ],
           "pending": [],
           "skipped": [],
-          "duration": 1876,
+          "duration": 820,
           "root": false,
           "rootEmpty": false,
-          "_timeout": 2000
+          "_timeout": 30000
         }
       ],
       "passes": [],
@@ -73,7 +116,7 @@
       "duration": 0,
       "root": true,
       "rootEmpty": true,
-      "_timeout": 2000
+      "_timeout": 30000
     }
   ],
   "meta": {

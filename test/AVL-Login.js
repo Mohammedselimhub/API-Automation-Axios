@@ -1,28 +1,37 @@
 const axios = require('axios');
 const {expect } = require("chai")
-//const {faker} = require("faker");
+const {faker} = require("@faker-js/faker")
 
-describe('Random', async function () {
+describe('Login-successful ', async function () {
     it('RETURNS STATUS CODE 200', async function () {
-       // const randominvalidname = faker.name.firstName();
-        const AVL = await axios.post('http://api.stageavl.afaqy.sa/auth/login',
+       //const randomPassword = faker.name.firstName();
+        const response = await axios.post('https://reqres.in/api/login',
         {
-            "data": {
-                "username": "large",
-                "password": "123456Aa",
-                "expire": 90000,
-                "projection": [
-                    "_id",
-                    "username",
-                    "email",
-                    "imgUrl",
-                    "last_login_date"
-                ]
-            }
+                "email": "eve.holt@reqres.in",
+                "password": "cityslicka"
         });
-       console.log(AVL);
-       expect(AVL.status).to.equal(200);
-       expect(AVL.data.message).to.equal('success');
-       //expect(AVL.data.value).to.be.a('string');
+       expect(response.status).to.equal(200);
     });
+
+    it('git list of users', async function () {
+         const response = await axios.get('https://reqres.in/api/users?page=2');
+        expect(response.status).to.equal(200);
+        expect(response.data.data[1].id).to.equal(8);
+     });
+
+     it('Create a job', async function () {
+        const randomPassword = faker.name.firstName();
+        const randomjob = faker.name.jobTitle()
+
+         const response = await axios.post('https://reqres.in/api/users',
+         {
+            "name": randomPassword,
+            "job": randomjob
+         });
+        expect(response.status).to.equal(201);
+       expect(response.data.name).equal(randomPassword);
+       expect(response.data.job).equal(randomjob);
+        console.log(response);
+     });
+
   });
